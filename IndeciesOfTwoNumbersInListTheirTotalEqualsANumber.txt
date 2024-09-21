@@ -1,0 +1,21 @@
+static int[] IndicesOfSum(List<int> l, int number)
+{
+    l.Sort(); // Sort the list
+    int lowI = 0;
+    int highI = l.Count - 1;
+
+    while (lowI < highI)
+    {
+        int low = l[lowI];
+        int high = l[highI];
+
+        if (low + high == number)
+            return new int[] { lowI, highI };
+        else if (low + high > number)
+            highI--;
+        else
+            lowI++;
+    }
+
+    return null; // If no pair is found
+}

@@ -1,0 +1,19 @@
+static public int FirstUniqChar(string s)
+{
+    int UCIndex = 0;
+    char UC=s[UCIndex];
+
+    for (int i = 0; i < s.Length; i++)
+    {
+        if ((UC == s[i])&&(i!=UCIndex))
+        {   
+            UCIndex++;
+            if (UCIndex > s.Length - 1)
+                return -1;
+            UC = s[UCIndex];
+            i = -1;
+        }
+        
+    }
+    return UCIndex;
+}

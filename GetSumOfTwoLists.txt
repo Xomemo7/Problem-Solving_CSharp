@@ -1,0 +1,42 @@
+public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            ListNode t1=l1, t2=l2,l3=new ListNode();
+            int i = 1,sum=0,n1=0,n2=0;
+
+            while(t1 != null)
+            {
+                n1 = n1 + (t1.val * i);
+                t1 = t1.next;
+                i *= 10;
+            }
+            i = 1;
+            while (t2 != null)
+            {
+                n2 = n2 + (t2.val * i);
+                t2 = t2.next;
+                i *= 10;
+            }
+            sum = n1 + n2;
+            if(sum>=0)
+            {
+                if (sum == 0)
+                    return new ListNode();
+                l3.val = sum % 10;
+                sum = (int)(sum / 10);
+                t1 = l3;
+            }
+            else
+            {
+                return null;
+            }
+            
+
+            
+            while(sum>0)
+            {
+                t1.next=new ListNode(sum % 10) ;
+                sum = (int)(sum / 10);
+                t1= t1.next;
+            }
+            return l3;
+
