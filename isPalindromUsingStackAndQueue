@@ -1,0 +1,12 @@
+static bool isPalindrome(Queue<int>q)
+{
+    Stack<int> s = new Stack<int>(q);
+    while (q.Count > 0)
+    {
+        if (q.Dequeue() != s.Pop())
+        {
+            return false;
+        }
+    }
+    return true;
+}
