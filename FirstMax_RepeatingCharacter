@@ -1,0 +1,25 @@
+ static void FirstMax_RepeatingCharacter(string text)
+ {
+     Queue<char> q = new Queue<char>(text);
+     Dictionary<char, List<int>> dict = new Dictionary<char, List<int>>();
+     int counter = 0;
+     while (q.Count > 0)
+     {
+         char currentChar= q.Dequeue();
+         if(dict.ContainsKey(currentChar))
+         {
+             dict[currentChar][0]++;//occurence increment
+         }
+         else
+         {
+             dict.Add(currentChar,new List<int> {1,counter});//occurence and order
+             counter++;
+         }
+         
+     }
+     int maxValue = dict.Values.Select(list => list[0]).Max();
+     char ch=dict.Where(kvp => (kvp.Value[0] == maxValue)).OrderBy(kvp => kvp.Value[1]).Select(kvp => kvp.Key).First();
+
+     Console.WriteLine($"{ch}: {dict[ch][0]}, {dict[ch][1]}");
+
+ }
