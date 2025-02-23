@@ -1,0 +1,34 @@
+static void FirstNon_RepeatingCharacter(string text)
+{
+    Queue<char> q = new Queue<char>(text);
+    Dictionary<char, List<int>> dict = new Dictionary<char, List<int>>();
+    int counter = 0;
+    while (q.Count > 0)
+    {
+        char currentChar = q.Dequeue();
+        if (dict.ContainsKey(currentChar))
+        {
+            dict[currentChar][0]++;//occurence increment
+        }
+        else
+        {
+            dict.Add(currentChar, new List<int> { 1, counter });//occurence and order
+            counter++;
+        }
+
+    }
+
+    try
+    {
+        char ch = dict.Where(kvp => (kvp.Value[0] == 1)).OrderBy(kvp => kvp.Value[1]).Select(kvp => kvp.Key).First();
+        Console.WriteLine($"{ch}: Order= {dict[ch][1]}");
+    }
+    catch
+    {
+        Console.WriteLine("No non-repeating character found");
+        return;
+    }
+
+    
+
+}
