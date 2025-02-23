@@ -1,0 +1,28 @@
+static Queue<int> MergeTwoSortedQueues(Queue<int>q1, Queue<int> q2)
+{
+    Queue<int> MergedQueue = new Queue<int>();
+    while (q1.Count > 0 || q2.Count > 0)
+    {
+        if (q1.Count == 0)
+        {
+            MergedQueue.Enqueue(q2.Dequeue());
+            continue;
+        }
+        if (q2.Count == 0)
+        {
+            MergedQueue.Enqueue(q1.Dequeue());
+            continue;
+        }
+
+        if (q1.Peek() < q2.Peek())
+        {
+            MergedQueue.Enqueue(q1.Dequeue());
+        }
+        else
+        {
+            MergedQueue.Enqueue(q2.Dequeue());
+        }
+    }
+    return MergedQueue;
+
+}
