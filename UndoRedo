@@ -1,0 +1,36 @@
+ public class UndoRedoStack<T>
+ {
+     Stack<T> UndoStack = new Stack<T>();
+     Stack<T> RedoStack = new Stack<T>();
+
+
+     public void AddItem(T item)
+     {
+         UndoStack.Push(item);
+         RedoStack.Clear();
+     }
+     public void PrintCurrentItem()
+     {
+         if (UndoStack.Count > 0)
+         {
+             Console.WriteLine(UndoStack.Peek());
+         }
+     }
+     public void Undo()
+     {
+         if (UndoStack.Count > 0)
+         {
+             T item = UndoStack.Pop();
+             RedoStack.Push(item);
+         }
+     }
+     public void Redo()
+     {
+         if (RedoStack.Count > 0)
+         {
+             T item = RedoStack.Pop();
+             UndoStack.Push(item);
+         }
+     }
+     
+ }
