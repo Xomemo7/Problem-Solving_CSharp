@@ -1,0 +1,30 @@
+ static void InterleaveQueue(Queue<int> queue)
+ {
+     int halfSize = queue.Count / 2;
+     Stack<int> stack = new Stack<int>();
+     for (int i = 0; i < halfSize; i++)
+     {
+         stack.Push(queue.Dequeue());
+     }
+
+     while (stack.Count > 0)
+     {
+         queue.Enqueue(stack.Pop());
+     }
+
+     for (int i = 0; i < halfSize; i++)
+     {
+         queue.Enqueue(queue.Dequeue());
+     }
+
+     for (int i = 0; i < halfSize; i++)
+     {
+         stack.Push(queue.Dequeue());
+     }
+
+     while (stack.Count > 0)
+     {
+         queue.Enqueue(stack.Pop());
+         queue.Enqueue(queue.Dequeue());
+     }
+ }
