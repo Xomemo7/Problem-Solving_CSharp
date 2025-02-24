@@ -1,0 +1,39 @@
+class PriorityQueue
+{
+   
+    SortedDictionary<int ,Queue<int>>PriorityWithValues = new SortedDictionary<int, Queue <int>>();
+    public int PriorityCount
+    {
+        get
+        {
+            return PriorityWithValues.Count;
+        }
+    }
+
+    public int ItemsCount
+    {
+        get
+        {
+           return PriorityWithValues.SelectMany(Queue => Queue.Value).Count();
+        }
+    }
+
+
+    public void Enqueue(int value, int priority)
+    {
+        if (!PriorityWithValues.ContainsKey(priority))
+        {
+            PriorityWithValues[priority] = new Queue<int>();
+        }
+        PriorityWithValues[priority].Enqueue(value);
+    }
+    public int Dequeue()
+    {
+        int key = PriorityWithValues.Last().Key;
+        int value = PriorityWithValues[key].Dequeue();
+        if(PriorityWithValues[key].Count == 0)
+            PriorityWithValues.Remove(key);
+        
+        return value;
+    }
+}
