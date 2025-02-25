@@ -1,1 +1,13 @@
+ static bool isPalindrome(string input)
+ {
+     Stack<char> s=new Stack<char>(input);
 
+     foreach(char c in input)
+     {
+         if(c!=s.Pop()) 
+             return false;
+     }   
+     return true;
+
+     
+ }
