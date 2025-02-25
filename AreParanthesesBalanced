@@ -1,0 +1,28 @@
+static bool isBalanced(string input)
+{
+    Stack<char> stack = new Stack<char>();
+    foreach(char c in input)
+    {
+        if(new List<char> { '(','{','[' }.Contains(c))
+            stack.Push(c);
+        else if(new List<char> { ')', '}', ']' }.Contains(c))
+        {
+            if (stack.Count ==0)
+                return false;
+            
+            char top=stack.Pop();
+
+            if (top == '('&& c!=')')
+                return false;
+            if (top == '{' && c != '}')
+                return false;
+            if (top == '[' && c != ']')
+                return false;
+
+
+        }
+    }
+    return stack.Count == 0;
+    
+
+}
