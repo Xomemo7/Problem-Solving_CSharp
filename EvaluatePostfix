@@ -1,0 +1,26 @@
+static int EvaluatePostfix(string Expression)
+{
+    Stack<char>s=new Stack<char>();
+    foreach(char c in Expression)
+    {
+        
+
+        if (new List<char> { '+', '-', '*', '/' }.Contains(c))
+        {
+            int op2 = s.Pop() - '0';//converts from char to number
+            int op1 = s.Pop() - '0';
+            switch (c)
+            {
+                case '+': s.Push((char)('0' + (op1 + op2)));break;
+                case '-': s.Push((char)('0' + (op1 - op2))); break;
+                case '*': s.Push((char)('0' + (op1 * op2))); break;
+                case '/': s.Push((char)('0' + (op1 / op2))); break;
+            }
+            continue;
+        }
+
+        s.Push(c);
+
+    }
+    return s.Pop()-'0';
+}
