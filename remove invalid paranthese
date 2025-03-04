@@ -1,0 +1,27 @@
+ static string RemoveInvalidParantheses(string input)
+ {
+     Stack<char>s=new Stack<char>();
+     List<char> result =new List<char>();
+
+     foreach (char c in input)
+     {
+         if(c=='(')
+         {
+             s.Push(c);
+             result.Add(c);
+         }
+         if(c==')' &&s.Count>0)
+         {
+             s.Pop();
+             result.Add(c);
+         }
+     }
+     
+     while (s.Count > 0)
+     {
+         result.RemoveAt(result.LastIndexOf('('));
+         s.Pop();
+     }
+     return string.Join("",result);
+     
+ }
